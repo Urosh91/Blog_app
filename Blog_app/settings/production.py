@@ -13,5 +13,5 @@ DATABASES['default'].update(db_from_env)
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-ALLOWED_HOSTS = ['*', 'evening-depths-74818.herokuapp.com', ]
+ALLOWED_HOSTS = ['*']
 
