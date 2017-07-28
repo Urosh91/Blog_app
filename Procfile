@@ -1,1 +1,1 @@
-web: gunicorn Blog_app.deploy --log-file -
+web: gunicorn blog_app43.deploy --log-file -
