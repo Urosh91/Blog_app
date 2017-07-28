@@ -1,5 +1,5 @@
 import dj_database_url
-from blogapp43.settings import *
+from blog_app43.settings import *
 
 DEBUG = False
 TEMPLATE_DEBUG = False
