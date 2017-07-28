@@ -72,7 +72,7 @@ MIDDLEWARE = [
 ]
 
 LOGIN_URL = '/login/'
-ROOT_URLCONF = 'blog_app43.urls'
+ROOT_URLCONF = 'blogapp43.urls'
 
 TEMPLATES = [
     {
@@ -90,7 +90,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'blog_app43.wsgi.application'
+WSGI_APPLICATION = 'blogapp43.wsgi.application'
 
 
 # Database
