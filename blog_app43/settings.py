@@ -11,6 +11,19 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from django.core.exceptions import *
+import warnings
+
+
+def get_env_variable(var_name):
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = f'Set the {var_name} env variable'
+        if DEBUG:
+            warnings.warn(error_msg)
+        else:
+            raise ImproperlyConfigured(error_msg)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -59,7 +72,7 @@ MIDDLEWARE = [
 ]
 
 LOGIN_URL = '/login/'
-ROOT_URLCONF = 'Blog_app.urls'
+ROOT_URLCONF = 'blog_app43.urls'
 
 TEMPLATES = [
     {
@@ -77,7 +90,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Blog_app.wsgi.application'
+WSGI_APPLICATION = 'blog_app43.wsgi.application'
 
 
 # Database
