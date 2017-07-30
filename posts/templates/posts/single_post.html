@@ -41,7 +41,7 @@
                     <footer>
                         by {{ comment.user.get_full_name }} | {{ comment.timestamp|timesince }} ago |
                         {% if comment.children.count > 0 %}{{ comment.children.count }} Comment{{ comment.children|pluralize}}
-                        | {% endif %} <a class="comment-reply-btn" href="">Reply</a> | <a href="{{ comment.get_absolute_url }}">
+                        | {% endif %} <a class="comment-reply-btn" href="#">Reply</a> | <a href="{{ comment.get_absolute_url }}">
                         Thread</a>
                     </footer>
                     <div class="comment-reply" style="display:none;">
