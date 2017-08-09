@@ -107,7 +107,9 @@ def post_list(request):
 def post_update(request, slug):
     post = get_object_or_404(Post, slug=slug)
     if not (request.user.is_staff or request.user.is_superuser or post.user == request.user):
-        raise Http404
+        response = HttpResponse('You do not have a permission to do that')
+        response.status_code = 403
+        return response
     form = PostForm(request.POST or None, request.FILES or None, instance=post)
     if form.is_valid():
         post = form.save(commit=False)
