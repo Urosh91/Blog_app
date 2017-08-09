@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.contenttypes.models import ContentType
@@ -121,9 +121,16 @@ def post_update(request, slug):
 
 
 def post_delete(request, slug):
-    if not (request.user.is_staff or request.user.is_superuser):
-        raise Http404
+    # if not (request.user.is_staff or request.user.is_superuser):
+    #     raise Http404
     post = get_object_or_404(Post, slug=slug)
-    post.delete()
-    messages.success(request, 'Successfully Created')
-    return redirect('posts:list')
+    if post.user != request.user:
+        if not (request.user.is_staff or request.user.is_superuser):
+            response = HttpResponse('You do not have a permission to do that')
+            response.status_code = 403
+            return response
+    if request.method == 'POST':
+        post.delete()
+        messages.success(request, f' { post.title } has been successfully deleted')
+        return redirect('posts:list')
+    return render(request, 'posts/confirm_delete.html', {'object': post})

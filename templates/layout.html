@@ -96,12 +96,10 @@
                 setTitle(newContent)
             })
 
-            $('body').on('click', '.comment-reply-btn', (evt) => {
-                evt.preventDefault();
-
-                const btn = $('.comment-reply-btn');
-                btn.parent().next('.comment-reply').fadeToggle();
-            });
+            $('.comment-reply-btn').click(function(event){
+                event.preventDefault();
+                $(this).parent().next('.comment-reply').fadeToggle();
+            })
         })
     </script>
 </body>
